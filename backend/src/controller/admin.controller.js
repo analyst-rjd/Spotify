@@ -15,8 +15,8 @@ const uploadtocloudinary = async (file) => {
 };
 
 export const checkAdmin = async (req, res, next) => {
-  res.status(200).json({ admin: true });// Return admin status
-}
+  return res.status(200).json({ admin: true }); // Return admin status
+};
 
 export const createSong = async (req, res, next) => {
   try {
@@ -52,7 +52,7 @@ export const createSong = async (req, res, next) => {
     }
 
     res.status(201).json(song);
-  } catch(error) {
+  } catch (error) {
     console.log("Error in adding song", error);
     next(error);
   }
@@ -94,7 +94,7 @@ export const createAlbum = async (req, res, next) => {
       title,
       artist,
       releaseyear,
-      imageUrl
+      imageUrl,
     });
     //save album to database
     await album.save();
@@ -103,7 +103,7 @@ export const createAlbum = async (req, res, next) => {
     console.log("Error adding Album", error);
     next(error);
   }
-}
+};
 
 export const deleteAlbum = async (req, res, next) => {
   try {
@@ -115,4 +115,4 @@ export const deleteAlbum = async (req, res, next) => {
     console.log("Error deleting Album", error);
     next(error);
   }
-}
+};
