@@ -5,14 +5,14 @@ import { axiosInstance } from "@/lib/axios";
 import { useUser } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
 
-const syncAttempted = useRef(false);
-
 const AuthCallbackPage = () => {
+  const syncAttempted = useRef(false);
   const { user, isLoaded } = useUser();
   const navigate = useNavigate();
   useEffect(() => {
     const authCallback = async () => {
       try {
+        syncAttempted.current = true;
         if (!isLoaded || !user || syncAttempted.current) return;
         await axiosInstance.post("/auth/callback", {
           id: user.id,
@@ -20,7 +20,6 @@ const AuthCallbackPage = () => {
           lastName: user.lastName,
           imageUrl: user.imageUrl,
         });
-        syncAttempted.current = true;
       } catch (error) {
         console.log("Error in auth callback", error);
       } finally {
