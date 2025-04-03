@@ -12,6 +12,7 @@ import songRoutes from "./routes/song.route.js";
 import albumRoutes from "./routes/album.route.js";
 import statRoutes from "./routes/stat.route.js";
 import { connectDB } from "./lib/db.js";
+import { error } from "console";
 
 dotenv.config();
 
@@ -45,7 +46,7 @@ app.use("/api/songs", songRoutes);
 app.use("/api/album", albumRoutes);
 app.use("/api/stats", statRoutes);
 
-app.use((err, res, req, next) => {
+app.use((err, req, res, next) => {
   res.status(500).json({
     message:
       process.env.NODE_ENV === "production"
