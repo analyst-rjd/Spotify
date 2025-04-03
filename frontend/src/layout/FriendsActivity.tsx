@@ -6,7 +6,7 @@ import { HeadphonesIcon, Music, Users } from "lucide-react";
 import { useEffect } from "react";
 
 const FriendsActivity = () => {
-  const { users, isLoading, error, fetchUsers } = useChatStore();
+  const { users, fetchUsers } = useChatStore();
   const { user } = useUser();
   useEffect(() => {
     if (user) fetchUsers();
@@ -15,7 +15,7 @@ const FriendsActivity = () => {
   const isPlaying = true;
 
   return (
-    <div className="h-full bg-zinc-900 rounded-lg flex flex-col overflow-x-hidden">
+    <div className="h-screen bg-zinc-900 rounded-lg flex flex-col overflow-x-hidden">
       <div className="flex justify-between items-center p-4 border-b border-zinc-800 sticky top-1.5 z-10 bg-zinc-900/75 backdrop-blur-md">
         <div className="flex items-center gap-3 rounded-lg">
           <Users className="size-5 shrink-0" />
