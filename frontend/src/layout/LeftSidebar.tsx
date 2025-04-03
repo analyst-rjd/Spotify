@@ -15,7 +15,7 @@ const LeftSidebar = () => {
   }, [fetchAlbums]);
   console.log({ albums });
   return (
-    <div className="flex flex-col h-full gap-2">
+    <div className="flex flex-col h-full gap-2 min-w-[70px]">
       <div className="rounded-lg bg-zinc-900 p-4 items-center">
         <div className="space-y-2 align-center">
           <Link
@@ -28,7 +28,7 @@ const LeftSidebar = () => {
             )}
           >
             <HomeIcon className="size-4 mr-2" />
-            <p className="hidden md:inline">Home</p>
+            <p className="hidden md:inline min-w-max">Home</p>
           </Link>
           <SignedIn>
             <Link
@@ -42,18 +42,17 @@ const LeftSidebar = () => {
               )}
             >
               <MessageCircle className="size-4 mr-2" />
-
-              <p className="hidden md:inline">Messages</p>
+              <p className="hidden md:inline min-w-max">Messages</p>
             </Link>
           </SignedIn>
         </div>
       </div>
       <div className="flex-1 rounded-lg bg-zinc-900 p-4">
-        <div className="flex items-center justify-start text-white px-2 mb-4 ms-2">
-          <Library className="size-5 mr-2" />
-          <p className="hidden md:inline">Library</p>
+        <div className="flex items-center justify-start text-white  mb-5">
+          <Library className="size-5 items-center  mr-2 ml-3 " />
+          <p className="hidden font-medium md:inline">Library</p>
         </div>
-        <ScrollArea className="h-[calc(100vh-300px)]">
+        <ScrollArea className="h-[calc(100vh-200px)]">
           <div className="space-y-2">
             {isLoading ? (
               <PlaylistSkeleton />

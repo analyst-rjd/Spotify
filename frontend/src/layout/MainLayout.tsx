@@ -6,9 +6,10 @@ import {
 import { Outlet } from "react-router-dom";
 import LeftSidebar from "./LeftSidebar";
 import { useMediaQuery } from "react-responsive";
+import FriendsActivity from "@/layout/FriendsActivity";
 
 const MainSidebar = () => {
-  const isMobile = useMediaQuery({ query: `(max-width: 768px)` });
+  const isMobile = useMediaQuery({ query: `(max-width: 800px)` });
 
   return (
     <div className="h-screen bg-black text-white flex flex-col">
@@ -17,9 +18,10 @@ const MainSidebar = () => {
         className="flex-1 flex h-full p-2 overflow-hidden"
       >
         <ResizablePanel
-          defaultSize={isMobile ? 10 : 20}
-          minSize={isMobile ? 10 : 20}
-          maxSize={isMobile ? 10 : 20}
+          defaultSize={isMobile ? 15 : 20}
+          minSize={8}
+          maxSize={25}
+          className="min-w-[70px]"
         >
           <LeftSidebar />
         </ResizablePanel>
@@ -34,7 +36,7 @@ const MainSidebar = () => {
           maxSize={25}
           collapsedSize={0}
         >
-          Friends
+          <FriendsActivity />
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>
