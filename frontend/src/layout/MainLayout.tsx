@@ -7,6 +7,7 @@ import { Outlet } from "react-router-dom";
 import LeftSidebar from "./LeftSidebar";
 import { useMediaQuery } from "react-responsive";
 import FriendsActivity from "@/layout/FriendsActivity";
+import AudioPlayer from "./AudioPlayer";
 
 const MainSidebar = () => {
   const isMobile = useMediaQuery({ query: `(max-width: 800px)` });
@@ -17,6 +18,7 @@ const MainSidebar = () => {
         direction="horizontal"
         className="flex-1 flex h-full p-2 overflow-hidden"
       >
+        <AudioPlayer />
         <ResizablePanel
           defaultSize={isMobile ? 15 : 20}
           minSize={8}

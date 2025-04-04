@@ -3,6 +3,7 @@ import { useAuth } from "@clerk/clerk-react";
 import { useState, useEffect } from "react";
 import { axiosInstance } from "@/lib/axios";
 import { Loader } from "lucide-react";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 const updateToken = (token: string | null) => {
   if (token)
@@ -12,12 +13,16 @@ const updateToken = (token: string | null) => {
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const { getToken } = useAuth();
   const [loading, setLoading] = useState(true);
+  const { fetchAdminStatus } = useAuthStore();
 
   useEffect(() => {
     const fetchToken = async () => {
       try {
         const token = await getToken();
         updateToken(token);
+        if (token) {
+          fetchAdminStatus();
+        }
       } catch (error: any) {
         updateToken(null);
         console.error("Error fetching token:", error);

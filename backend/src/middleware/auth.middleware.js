@@ -1,4 +1,7 @@
 import { clerkClient } from "@clerk/express";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export const protectRoute = async (req, res, next) => {
   if (!req.auth.userId) {
@@ -8,14 +11,11 @@ export const protectRoute = async (req, res, next) => {
   }
   next();
 };
-
 export const requireAdmin = async (req, res, next) => {
   try {
-    const currentUser = await req.auth.userId;
+    const currentUser = await clerkClient.users.getUser(req.auth.userId);
     const isAdmin =
-      process.env.ADMIN ===
-      (await currentUser.primaryEmailAddress?.emailAddress);
-
+      process.env.ADMIN === currentUser.primaryEmailAddress?.emailAddress;
     if (!isAdmin) {
       return res
         .status(403)
